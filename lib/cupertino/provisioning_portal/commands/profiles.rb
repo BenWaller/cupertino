@@ -55,7 +55,7 @@ command :'profiles:download' do |c|
 
     say_warning "No active #{type} profiles found." and abort if profiles.empty?
 
-    profile = profiles.find{|p| p.name == args.join(" ")} || choose("Select a profile:", *profiles)
+    profile = profiles.find{|p| p.name == args.join(" ")} || say_error "Could not download profile. Check that the profile name is correct"
 
     if filename = agent.download_profile(profile)
       say_ok "Successfully downloaded: '#{filename}'"
